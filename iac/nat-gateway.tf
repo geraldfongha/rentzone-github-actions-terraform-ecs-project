@@ -19,7 +19,7 @@ resource "aws_eip" "eip2" {
 # create nat gateway in public subnet az1
 resource "aws_nat_gateway" "nat_gateway_az1" {
   allocation_id = aws_eip.eip1.id
-  subnet_id     = aws_subnet.public_subnet_az1.id
+  subnet_id     = aws_subnet.public_subnet_az1.id # public subnet az1
 
   tags = {
     Name = "${var.project_name}-${var.environment}-ng-az1"
@@ -27,7 +27,7 @@ resource "aws_nat_gateway" "nat_gateway_az1" {
 
   # to ensure proper ordering, it is recommended to add an explicit dependency
   # on the internet gateway for the vpc
-  
+
   depends_on = [aws_internet_gateway.internet_gateway]
 }
 
